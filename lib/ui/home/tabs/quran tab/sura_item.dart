@@ -1,0 +1,82 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:islami/model/sura_model.dart';
+import 'package:islami/style/methods.dart';
+import 'package:islami/ui/home/tabs/quran%20tab/quran_detels_screen.dart';
+
+// ignore: must_be_immutable
+class SuraItem extends StatelessWidget {
+  SuraModel suraModel;
+  SuraItem(this.suraModel, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => QuranDetailsScreen(suraModel: suraModel),
+          ),
+        );
+      },
+      child: Row(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SvgPicture.asset(
+                "assets/imeges/hexagonal.svg",
+                height: calculateHeight(64, screenHeight),
+                width: calculateWidth(64, screenWidth),
+              ),
+              Text(
+                suraModel.suraNumber.toString(),
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: 24),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  suraModel.suraNameEn,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  "${suraModel.versesNumber} Verses",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            suraModel.suraNameAr,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/style/color_manager.dart';
-import 'package:islami/ui/home/tabs/hadith_tab.dart';
-import 'package:islami/ui/home/tabs/quran_tab.dart';
+import 'package:islami/ui/home/tabs/hadith%20tab/hadith_tab.dart';
+import 'package:islami/ui/home/tabs/quran%20tab/quran_tab.dart';
 import 'package:islami/ui/home/tabs/radio_tab.dart';
 import 'package:islami/ui/home/tabs/sebha_tab.dart';
 import 'package:islami/ui/home/tabs/time_tab.dart';
@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selected = 0;
   List<Widget> tabs = [
     QuranTab(),
-    HadithTab(),
+    HadethTab(),
     SebhaTab(),
     RadioTab(),
     TimeTab(),

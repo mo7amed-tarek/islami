@@ -9,7 +9,7 @@ List<OnboardingContent> contents = [
   ),
   OnboardingContent(
     image1: 'assets/imeges/islami.png',
-    image2: 'assets/imeges/mosque.png',
+    image2: 'assets/imeges/mousq_intro.png',
     description: 'Welcome To Islami',
     additionalDescription: 'We Are Very Excited To Have You In Our \nCommunity',
   ),
