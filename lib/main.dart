@@ -13,6 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnboardingScreen(),
+      theme: ThemeData(
+        navigationBarTheme: NavigationBarThemeData(
+          labelTextStyle: MaterialStateTextStyle.resolveWith(
+            (State) =>
+                TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+          ),
+        ),
+      ),
     );
   }
 }

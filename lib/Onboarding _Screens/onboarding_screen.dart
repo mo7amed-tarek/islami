@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:islami/ui/home/home_screen.dart';
 import 'onboarding_data.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -131,7 +133,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (currentIndex == contents.length - 1) {
-                    print("Go to login or home page");
+                    // روح للـ HomePage
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
                   } else {
                     nextPage();
                   }
