@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/style/app_constants.dart';
 import 'package:islami/style/color_manager.dart';
@@ -29,6 +27,7 @@ class QuranTab extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
+            SizedBox(height: 30),
             Image.asset("assets/imeges/islami.png", width: 299, height: 141),
             SizedBox(height: 21),
             TextField(

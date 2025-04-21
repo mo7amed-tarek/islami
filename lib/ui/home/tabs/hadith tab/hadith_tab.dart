@@ -39,6 +39,7 @@ class _HadethTabState extends State<HadethTab> {
             padding: const EdgeInsets.only(bottom: 20),
             child: Column(
               children: [
+                SizedBox(height: 30),
                 Image.asset(
                   "assets/imeges/islami.png",
                   width: 299,
