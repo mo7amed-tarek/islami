@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/model/sura_model.dart';
@@ -8,7 +7,8 @@ import 'package:islami/ui/home/tabs/quran%20tab/quran_detels_screen.dart';
 // ignore: must_be_immutable
 class SuraItem extends StatelessWidget {
   SuraModel suraModel;
-  SuraItem(this.suraModel, {super.key});
+  void Function() onPress;
+  SuraItem({required this.suraModel, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,7 @@ class SuraItem extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
+        onPress();
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => QuranDetailsScreen(suraModel: suraModel),

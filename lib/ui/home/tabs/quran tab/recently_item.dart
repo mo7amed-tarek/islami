@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:islami/model/sura_model.dart';
 import 'package:islami/style/color_manager.dart';
 
+// ignore: must_be_immutable
 class RecentlyItem extends StatelessWidget {
-  const RecentlyItem({super.key});
-
+  SuraModel suraModel;
+  RecentlyItem(this.suraModel);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +21,7 @@ class RecentlyItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "Al-Anbiya",
+                suraModel.suraNameEn,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
@@ -27,7 +29,7 @@ class RecentlyItem extends StatelessWidget {
                 ),
               ),
               Text(
-                "الأنبياء",
+                suraModel.suraNameAr,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
@@ -35,7 +37,7 @@ class RecentlyItem extends StatelessWidget {
                 ),
               ),
               Text(
-                "112 Verses  ",
+                "${suraModel.versesNumber} Verses  ",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

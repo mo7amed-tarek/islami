@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islami/Onboarding%20_Screens/onboarding_screen.dart';
+import 'package:islami/style/prefs_manager.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PrefsManager.init();
   runApp(const MyApp());
 }
 
