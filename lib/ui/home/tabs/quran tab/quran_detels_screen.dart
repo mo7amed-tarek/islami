@@ -13,11 +13,12 @@ class QuranDetailsScreen extends StatefulWidget {
 }
 
 class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
+  String verses = "";
+  double fontSize = 20;
   @override
   void initState() {
-    loadFile(widget.suraModel.suraNumber);
-    // non blocking
     super.initState();
+    loadFile(widget.suraModel.suraNumber);
   }
 
   @override
@@ -41,7 +42,7 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 9, horizontal: 18),
+              padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 18),
               child: Column(
                 children: [
                   Row(
@@ -67,6 +68,7 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 12),
                   Expanded(
                     child:
                         verses.isEmpty
@@ -76,14 +78,20 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                               ),
                             )
                             : SingleChildScrollView(
-                              child: Text(
-                                verses,
-                                textAlign: TextAlign.center,
-                                textDirection: TextDirection.rtl,
-                                style: TextStyle(
-                                  color: ColorManager.primary,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
+                              child: InteractiveViewer(
+                                panEnabled: true,
+                                boundaryMargin: const EdgeInsets.all(20),
+                                minScale: 1,
+                                maxScale: 4,
+                                child: Text(
+                                  verses,
+                                  textAlign: TextAlign.center,
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    color: ColorManager.primary,
+                                    fontSize: fontSize,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                             ),
@@ -92,25 +100,73 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
               ),
             ),
           ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: FloatingActionButton(
+                    heroTag: "zoom_in",
+                    backgroundColor: ColorManager.primary,
+                    mini: true,
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize < 40) {
+                          fontSize += 2;
+                        }
+                      });
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      color: ColorManager.blackColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: FloatingActionButton(
+                    heroTag: "zoom_out",
+                    backgroundColor: ColorManager.primary,
+                    mini: true,
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize > 20) fontSize -= 2;
+                      });
+                    },
+                    child: const Icon(
+                      Icons.remove,
+                      color: ColorManager.blackColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Image.asset("assets/imeges/Mosque-02.png"),
         ],
       ),
     );
   }
 
-  String verses = "";
-
-  loadFile(int suraNumber) async {
+  Future<void> loadFile(int suraNumber) async {
     String sura = await rootBundle.loadString(
       "assets/files/Suras/$suraNumber.txt",
-    ); // non blocking
+    );
+
     List<String> suraLines = sura.split("\n");
 
+    verses = "";
     for (int i = 0; i < suraLines.length; i++) {
-      verses = verses + suraLines[i];
-      verses += "(${i + 1})";
+      verses += suraLines[i];
+      verses += "(${i + 1}) ";
     }
-    print(verses);
+
     setState(() {});
   }
 }

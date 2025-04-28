@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:islami/model/hadith_model.dart';
 import 'package:islami/style/color_manager.dart';
 
-class HadethDetailsScreen extends StatelessWidget {
+class HadethDetailsScreen extends StatefulWidget {
   final HadethModel hadethModel;
 
   const HadethDetailsScreen({super.key, required this.hadethModel});
+
+  @override
+  State<HadethDetailsScreen> createState() => _HadethDetailsScreenState();
+}
+
+class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
+  double fontSize = 20; // متغير حجم الخط الابتدائي
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,7 @@ class HadethDetailsScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: ColorManager.primary),
         title: Text(
-          "Hadith ${hadethModel.number}",
+          "Hadith ${widget.hadethModel.number}",
           style: TextStyle(
             color: ColorManager.primary,
             fontSize: 20,
@@ -28,7 +35,7 @@ class HadethDetailsScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 9, horizontal: 18),
+              padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 18),
               child: Column(
                 children: [
                   Row(
@@ -41,7 +48,7 @@ class HadethDetailsScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          hadethModel.name,
+                          widget.hadethModel.name,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: ColorManager.primary,
@@ -60,15 +67,66 @@ class HadethDetailsScreen extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Text(
-                        hadethModel.content,
+                        widget.hadethModel.content,
                         textAlign: TextAlign.center,
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
                           color: ColorManager.primary,
-                          fontSize: 20,
+                          fontSize: fontSize, // ← هنا بنستخدم الحجم المتغير
                           fontWeight: FontWeight.w700,
                         ),
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: FloatingActionButton(
+                            heroTag: "zoom_in_hadith",
+                            backgroundColor: ColorManager.primary,
+                            mini: true,
+                            onPressed: () {
+                              setState(() {
+                                if (fontSize < 40) {
+                                  fontSize += 2;
+                                }
+                              });
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              size: 20,
+                              color: ColorManager.blackColor,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: FloatingActionButton(
+                            heroTag: "zoom_out_hadith",
+                            backgroundColor: ColorManager.primary,
+                            mini: true,
+                            onPressed: () {
+                              setState(() {
+                                if (fontSize > 20) {
+                                  fontSize -= 2;
+                                }
+                              });
+                            },
+                            child: const Icon(
+                              Icons.remove,
+                              size: 20,
+                              color: ColorManager.blackColor,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
