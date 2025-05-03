@@ -10,6 +10,7 @@ import 'package:islami/style/prefs_manager.dart';
 import 'package:islami/ui/home/tabs/quran%20tab/quran_detels_screen.dart';
 import 'package:islami/ui/home/tabs/quran%20tab/recently_item.dart';
 import 'package:islami/ui/home/tabs/quran%20tab/sura_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuranTab extends StatefulWidget {
   const QuranTab({super.key});
@@ -46,8 +47,13 @@ class _QuranTabState extends State<QuranTab> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Image.asset("assets/imeges/islami.png", width: 299, height: 141),
-            SizedBox(height: 21),
+            SizedBox(height: 30.h),
+            Image.asset(
+              "assets/imeges/islami.png",
+              width: 299.w,
+              height: 141.h,
+            ),
+            SizedBox(height: 21.h),
             TextField(
               cursorColor: ColorManager.primary,
               onChanged: (value) {
@@ -59,7 +65,7 @@ class _QuranTabState extends State<QuranTab> {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
               decoration: InputDecoration(
                 prefixIcon: Padding(
@@ -76,7 +82,7 @@ class _QuranTabState extends State<QuranTab> {
                 hintStyle: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -92,29 +98,29 @@ class _QuranTabState extends State<QuranTab> {
               visible: searchText.isEmpty,
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
                       "Most Recently ",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Container(
                     height: calculateHeight(150, screenHeight),
                     child:
                         mostRecently.isEmpty
-                            ? const Center(
+                            ? Center(
                               child: Text(
                                 "No Recently items",
                                 style: TextStyle(
                                   color: ColorManager.primary,
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -149,17 +155,17 @@ class _QuranTabState extends State<QuranTab> {
                                     child: RecentlyItem(mostRecently[index]),
                                   ),
                               separatorBuilder:
-                                  (context, index) => SizedBox(width: 10),
+                                  (context, index) => SizedBox(width: 10.w),
                               itemCount: mostRecently.length,
                             ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
                       "Suras List",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
@@ -168,7 +174,7 @@ class _QuranTabState extends State<QuranTab> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Expanded(
               child: ListView.separated(
                 itemBuilder:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/model/sura_model.dart';
 import 'package:islami/style/color_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuranDetailsScreen extends StatefulWidget {
   final SuraModel suraModel;
@@ -14,7 +15,7 @@ class QuranDetailsScreen extends StatefulWidget {
 
 class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
   String verses = "";
-  double fontSize = 20;
+  double fontSize = 20.sp;
   @override
   void initState() {
     super.initState();
@@ -33,7 +34,7 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
           widget.suraModel.suraNameEn,
           style: TextStyle(
             color: ColorManager.primary,
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -50,25 +51,25 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                     children: [
                       Image.asset(
                         "assets/imeges/sura_details_border_left.png",
-                        width: 88,
-                        height: 88,
+                        width: 88.w,
+                        height: 88.h,
                       ),
                       Text(
                         widget.suraModel.suraNameAr,
                         style: TextStyle(
                           color: ColorManager.primary,
-                          fontSize: 24,
+                          fontSize: 24.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       Image.asset(
                         "assets/imeges/sura_details_border_right.png",
-                        width: 88,
-                        height: 88,
+                        width: 88.w,
+                        height: 88.h,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   Expanded(
                     child:
                         verses.isEmpty
@@ -79,7 +80,8 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                             )
                             : SingleChildScrollView(
                               child: InteractiveViewer(
-                                panEnabled: true,
+                                panEnabled: false,
+                                scaleEnabled: false,
                                 boundaryMargin: const EdgeInsets.all(20),
                                 minScale: 1,
                                 maxScale: 4,
@@ -107,8 +109,8 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 30,
-                  width: 30,
+                  height: 35.h,
+                  width: 35.w,
                   child: FloatingActionButton(
                     heroTag: "zoom_in",
                     backgroundColor: ColorManager.primary,
@@ -120,16 +122,17 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                         }
                       });
                     },
-                    child: const Icon(
-                      Icons.add,
-                      color: ColorManager.blackColor,
+                    child: Image.asset(
+                      "assets/imeges/zoom_in.png",
+                      height: 20.h,
+                      width: 20.w,
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                SizedBox(width: 20.w),
                 SizedBox(
-                  height: 30,
-                  width: 30,
+                  height: 35.h,
+                  width: 35.w,
                   child: FloatingActionButton(
                     heroTag: "zoom_out",
                     backgroundColor: ColorManager.primary,
@@ -139,9 +142,10 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                         if (fontSize > 20) fontSize -= 2;
                       });
                     },
-                    child: const Icon(
-                      Icons.remove,
-                      color: ColorManager.blackColor,
+                    child: Image.asset(
+                      "assets/imeges/zoom_out.png",
+                      height: 20.h,
+                      width: 20.w,
                     ),
                   ),
                 ),

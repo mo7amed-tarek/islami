@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/Onboarding%20_Screens/onboarding_screen.dart';
 import 'package:islami/style/prefs_manager.dart';
 
@@ -13,17 +14,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-      theme: ThemeData(
-        navigationBarTheme: NavigationBarThemeData(
-          labelTextStyle: MaterialStateTextStyle.resolveWith(
-            (State) =>
-                TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+    return ScreenUtilInit(
+      designSize: Size(500, 950),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: OnboardingScreen(),
+          theme: ThemeData(
+            navigationBarTheme: NavigationBarThemeData(
+              labelTextStyle: MaterialStateTextStyle.resolveWith(
+                (State) =>
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

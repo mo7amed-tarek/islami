@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:islami/model/hadith_model.dart';
 import 'package:islami/style/color_manager.dart';
 import 'package:islami/ui/home/tabs/hadith%20tab/hadith_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HadethTab extends StatefulWidget {
   @override
@@ -36,16 +37,16 @@ class _HadethTabState extends State<HadethTab> {
         children: [
           Image.asset("assets/imeges/hadith_back.jpg"),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20),
+            padding: EdgeInsets.only(bottom: 20.h),
             child: Column(
               children: [
-                SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 Image.asset(
                   "assets/imeges/islami.png",
-                  width: 299,
-                  height: 141,
+                  width: 299.h,
+                  height: 141.w,
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 Expanded(
                   child:
                       allAhadeth.isEmpty

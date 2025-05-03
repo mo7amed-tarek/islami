@@ -1,5 +1,6 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/ui/home/home_screen.dart';
 import 'onboarding_data.dart';
 
@@ -55,63 +56,47 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 25),
-                      Image.asset(
-                        contents[index].image1,
-                        height: 151,
-                        width: 291,
-                      ),
-                      const SizedBox(height: 50),
-                      Image.asset(
-                        contents[index].image2,
-                        height: 338,
-                        width: 366,
-                      ),
-                      const SizedBox(height: 50),
-                      Text(
-                        contents[index].description,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xffE2BE7F),
+                  padding: EdgeInsets.all(10.h),
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        Spacer(),
+                        Image.asset(
+                          contents[index].image1,
+                          height: 151.h,
+                          width: 291.w,
                         ),
-                      ),
-                      const SizedBox(height: 40),
-                      Text(
-                        contents[index].additionalDescription,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xffE2BE7F),
+                        Spacer(),
+                        Image.asset(
+                          contents[index].image2,
+                          height: 338.h,
+                          width: 366.w,
                         ),
-                      ),
-                    ],
+                        Spacer(),
+                        Text(
+                          contents[index].description,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xffE2BE7F),
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          contents[index].additionalDescription,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xffE2BE7F),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
-            ),
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              contents.length,
-              (index) => AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                height: 7,
-                width: currentIndex == index ? 20 : 7,
-                decoration: BoxDecoration(
-                  color:
-                      currentIndex == index ? Color(0xffE2BE7F) : Colors.grey,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
             ),
           ),
 
@@ -120,20 +105,36 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Visibility(
                 visible: currentIndex != 0,
-                child: ElevatedButton(
+                child: TextButton(
                   onPressed: previousPage,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff202020),
-                    foregroundColor: Color(0xffE2BE7F),
+                  child: Text(
+                    'Back',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Color(0xffE2BE7F),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  child: const Text('Back'),
                 ),
               ),
 
-              ElevatedButton(
+              DotsIndicator(
+                dotsCount: contents.length,
+                position: currentIndex.toDouble(),
+                decorator: DotsDecorator(
+                  activeColor: const Color(0xffE2BE7F),
+                  color: Colors.grey,
+                  activeSize: Size(20.w, 7.h),
+                  size: Size(7.w, 7.h),
+                  activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+
+              TextButton(
                 onPressed: () {
                   if (currentIndex == contents.length - 1) {
-                    // روح للـ HomePage
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -142,12 +143,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     nextPage();
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff202020),
-                  foregroundColor: Color(0xffE2BE7F),
-                ),
                 child: Text(
                   currentIndex == contents.length - 1 ? 'Start' : 'Next',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    color: Color(0xffE2BE7F),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

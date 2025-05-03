@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/model/hadith_model.dart';
 import 'package:islami/style/color_manager.dart';
 import 'package:islami/ui/home/tabs/hadith%20tab/hadith_details_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HadethItem extends StatelessWidget {
   final int index;
@@ -28,13 +29,13 @@ class HadethItem extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(
-          right: 16,
-          top: index != selectedIndex ? 20 : 0,
-          bottom: index != selectedIndex ? 20 : 0,
+          right: 16.w,
+          top: index != selectedIndex ? 20.h : 0,
+          bottom: index != selectedIndex ? 20.h : 0,
         ),
         decoration: BoxDecoration(
           color: ColorManager.primary,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         child: Column(
           children: [
@@ -47,8 +48,8 @@ class HadethItem extends StatelessWidget {
                       children: [
                         Image.asset(
                           "assets/imeges/hadith_details_border_left.png",
-                          height: 88,
-                          width: 88,
+                          height: 88.h,
+                          width: 88.w,
                         ),
                         Expanded(
                           child: Text(
@@ -57,14 +58,14 @@ class HadethItem extends StatelessWidget {
                             style: TextStyle(
                               color: ColorManager.blackColor,
                               fontWeight: FontWeight.w700,
-                              fontSize: 20,
+                              fontSize: 20.sp,
                             ),
                           ),
                         ),
                         Image.asset(
                           "assets/imeges/hadith_details_border_right.png",
-                          height: 88,
-                          width: 88,
+                          height: 88.h,
+                          width: 88.w,
                         ),
                       ],
                     ),
@@ -82,7 +83,7 @@ class HadethItem extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w700,
                               color: ColorManager.blackColor,
                             ),

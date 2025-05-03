@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/model/hadith_model.dart';
 import 'package:islami/style/color_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HadethDetailsScreen extends StatefulWidget {
   final HadethModel hadethModel;
@@ -12,7 +13,7 @@ class HadethDetailsScreen extends StatefulWidget {
 }
 
 class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
-  double fontSize = 20; // متغير حجم الخط الابتدائي
+  double fontSize = 20.sp;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
           "Hadith ${widget.hadethModel.number}",
           style: TextStyle(
             color: ColorManager.primary,
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -35,7 +36,7 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 18),
+              padding: EdgeInsets.symmetric(vertical: 9.h, horizontal: 18.w),
               child: Column(
                 children: [
                   Row(
@@ -43,8 +44,8 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                     children: [
                       Image.asset(
                         "assets/imeges/sura_details_border_left.png",
-                        height: 88,
-                        width: 88,
+                        height: 88.h,
+                        width: 88.w,
                       ),
                       Expanded(
                         child: Text(
@@ -52,15 +53,15 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: ColorManager.primary,
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
                       Image.asset(
                         "assets/imeges/sura_details_border_right.png",
-                        height: 88,
-                        width: 88,
+                        height: 88.h,
+                        width: 88.w,
                       ),
                     ],
                   ),
@@ -72,20 +73,20 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
                           color: ColorManager.primary,
-                          fontSize: fontSize, // ← هنا بنستخدم الحجم المتغير
+                          fontSize: fontSize,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 30,
-                          height: 30,
+                          width: 35.w,
+                          height: 35.h,
                           child: FloatingActionButton(
                             heroTag: "zoom_in_hadith",
                             backgroundColor: ColorManager.primary,
@@ -97,17 +98,17 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                                 }
                               });
                             },
-                            child: const Icon(
-                              Icons.add,
-                              size: 20,
-                              color: ColorManager.blackColor,
+                            child: Image.asset(
+                              "assets/imeges/zoom_in.png",
+                              height: 20.h,
+                              width: 20.w,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        SizedBox(width: 20.w),
                         SizedBox(
-                          width: 30,
-                          height: 30,
+                          width: 35.w,
+                          height: 35.h,
                           child: FloatingActionButton(
                             heroTag: "zoom_out_hadith",
                             backgroundColor: ColorManager.primary,
@@ -119,10 +120,10 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                                 }
                               });
                             },
-                            child: const Icon(
-                              Icons.remove,
-                              size: 20,
-                              color: ColorManager.blackColor,
+                            child: Image.asset(
+                              "assets/imeges/zoom_out.png",
+                              height: 20.h,
+                              width: 20.w,
                             ),
                           ),
                         ),

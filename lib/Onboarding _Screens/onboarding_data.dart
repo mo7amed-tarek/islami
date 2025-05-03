@@ -1,4 +1,4 @@
-import 'onboarding_content.dart';
+import '../model/onboarding_content.dart';
 
 List<OnboardingContent> contents = [
   OnboardingContent(
@@ -11,7 +11,7 @@ List<OnboardingContent> contents = [
     image1: 'assets/imeges/islami.png',
     image2: 'assets/imeges/mousq_intro.png',
     description: 'Welcome To Islami',
-    additionalDescription: 'We Are Very Excited To Have You In Our \nCommunity',
+    additionalDescription: 'We Are Very Excited To Have You In Our\nCommunity',
   ),
   OnboardingContent(
     image1: 'assets/imeges/islami.png',
@@ -23,13 +23,13 @@ List<OnboardingContent> contents = [
     image1: 'assets/imeges/islami.png',
     image2: 'assets/imeges/Frame 3 (2).png',
     description: 'Bearish',
-    additionalDescription: 'Praise the name of your Lord, the Most \nHigh',
+    additionalDescription: 'Praise the name of your Lord, the Most\nHigh',
   ),
   OnboardingContent(
     image1: 'assets/imeges/islami.png',
     image2: 'assets/imeges/radio.png',
     description: 'Holy Quran Radio',
     additionalDescription:
-        'You can listen to the Holy Quran Radio \n through the application for free and easily',
+        'You can listen to the Holy Quran Radio\n through the application for free and easily',
   ),
 ];
